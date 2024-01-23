@@ -1,0 +1,21 @@
+<div *ngIf="!addedProductList.length; else elseblock" class="no-products">
+  <span>no items on the cart</span>
+</div>
+
+<ng-template #elseblock>
+  <div class="borrowed-item-container">
+    <app-added-product-card
+      *ngFor="let product of addedProductList; index as i"
+      (removeProductEvent)="onRemoveProductEvent($event, i)"
+
+      [addedProduct]="product"
+    ></app-added-product-card>
+    <div class="checkout">
+      <div class="detail-wrapper">
+        <p>TOTAL</p>
+        <p>{{ totalPrice | currency }}</p>
+      </div>
+      <button mat-flat-button color="primary">CHECKOUT</button>
+    </div>
+  </div>
+</ng-template>

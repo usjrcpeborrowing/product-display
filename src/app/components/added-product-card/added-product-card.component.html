@@ -1,0 +1,16 @@
+<mat-card class="added-product">
+  <div class="item-image">
+    <img [src]="addedProduct.thumbnail" alt="" />
+  </div>
+  <div class="title-price">
+    <p class="item-name">{{ addedProduct.title }}</p>
+    <p class="item-price">{{ addedProduct.price | currency : "USD" }}</p>
+  </div>
+
+  <div class="item-qty">
+    <span>1</span>
+  </div>
+  <div class="circle clickable" (click)="removeAddedProduct()">
+    <mat-icon>close</mat-icon>
+  </div>
+</mat-card>

@@ -1,0 +1,41 @@
+<div class="page-container">
+  <div class="search-filter-wrapper">
+    <mat-form-field floatLabel="always">
+      <mat-label>Search Product</mat-label>
+      <input
+        matInput
+        placeholder="Type Here"
+        autocomplete="off"
+        [formControl]="searchedWord"
+        (keyup.enter)="searchProduct($event)"
+      />
+      <mat-icon matSuffix (click)="searchProduct($event)">search</mat-icon>
+      <!-- <mat-hint>Hint</mat-hint> -->
+    </mat-form-field>
+  </div>
+  <div class="no-results" *ngIf="!productlist.length; else elseblock">
+    <span>no results available</span>
+  </div>
+  <ng-template #elseblock>
+    <div class="product-list-wrapper" [class.openside]="opened">
+      <app-product-card
+        *ngFor="let prod of productlist"
+        [product]="prod"
+      ></app-product-card>
+    </div>
+  </ng-template>
+  <div
+    class="view-cart-container clickable"
+    [class.cart-openside]="opened"
+    (click)="cartClicked()"
+  >
+    <mat-icon>shopping_cart</mat-icon>
+  </div>
+</div>
+<mat-paginator
+  [length]="pagination.length"
+  [pageSize]="pagination.limit"
+  [pageSizeOptions]="pagination.pageSizeOption"
+  (page)="paginate($event)"
+>
+</mat-paginator>
